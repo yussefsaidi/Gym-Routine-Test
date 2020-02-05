@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.yussefsaidi.ppl.adapters.ExerciseRecyclerAdapter;
 import com.yussefsaidi.ppl.models.Exercise;
+import com.yussefsaidi.ppl.util.VerticalSpacingItemDecorator;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,8 @@ public class ExercisesListActivity extends AppCompatActivity {
     private void initRecyclerView(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        VerticalSpacingItemDecorator itemDecorator = new VerticalSpacingItemDecorator(10);
+        mRecyclerView.addItemDecoration(itemDecorator);
         mExerciseRecyclerAdapter = new ExerciseRecyclerAdapter(mExercises);
         mRecyclerView.setAdapter(mExerciseRecyclerAdapter);
     }
