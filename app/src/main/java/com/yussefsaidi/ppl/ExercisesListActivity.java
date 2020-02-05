@@ -1,6 +1,7 @@
 package com.yussefsaidi.ppl;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +33,9 @@ public class ExercisesListActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
         initRecyclerView();
         insertFakeExercises();
+
+        setSupportActionBar((Toolbar)findViewById(R.id.exercises_toolbar));
+        setTitle("PPL");
     }
 
     private void insertFakeExercises(){
