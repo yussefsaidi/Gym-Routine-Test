@@ -38,8 +38,8 @@ public class ExercisesListActivity extends AppCompatActivity {
         for(int i = 0; i < 100; i++){
             Exercise exercise = new Exercise();
             exercise.setName("Exercise # " + i);
-            exercise.setSets("Sets # " + i);
-            exercise.setRepetitions("Reps # " + i);
+            exercise.setSets("5");
+            exercise.setRepetitions("5");
             mExercises.add(exercise);
         }
         mExerciseRecyclerAdapter.notifyDataSetChanged();
