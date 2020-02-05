@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:weightSum="100"
-    android:background="@color/lightGrey"
+    android:background="@color/lightRed"
     android:gravity="center_vertical">
 
     <View
@@ -22,11 +22,13 @@
         android:text="Squat"
         android:textSize="23sp"
         android:textColor="#000"
-        android:layout_weight="44"/>
+        android:layout_weight="60"
+        android:lines="1"/>
     <View
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="4"/>
+        android:layout_weight="10"
+        />
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -34,7 +36,8 @@
         android:text="5"
         android:textSize="23sp"
         android:textColor="#000"
-        android:layout_weight="14"/>
+        android:layout_weight="10"
+        />
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,7 +45,7 @@
         android:text="X"
         android:textSize="18sp"
         android:textColor="#000"
-        android:layout_weight="14"/>
+        android:layout_weight="10"/>
 
     <TextView
         android:layout_width="0dp"
@@ -51,5 +54,5 @@
         android:text="5"
         android:textSize="23sp"
         android:textColor="#000"
-        android:layout_weight="14"/>
+        android:layout_weight="10"/>
 </LinearLayout>
