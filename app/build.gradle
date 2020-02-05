@@ -32,4 +32,7 @@ dependencies {
 
     // Coordinator Layout
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+
+    //Design support for toolbars
+    implementation 'com.google.android.material:material:1.0.0'
 }
