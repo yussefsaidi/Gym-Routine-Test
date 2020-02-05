@@ -1,25 +1,25 @@
 package com.yussefsaidi.ppl.models;
 
 public class Exercise {
-    private String title;
+    private String name;
     private String sets;
     private String repetitions;
 
     public Exercise() {
     }
 
-    public Exercise(String title, String sets, String repetitions) {
-        this.title = title;
+    public Exercise(String name, String sets, String repetitions) {
+        this.name = name;
         this.sets = sets;
         this.repetitions = repetitions;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSets() {
@@ -41,7 +41,7 @@ public class Exercise {
     @Override
     public String toString() {
         return "Exercise{" +
-                "title='" + title + '\'' +
+                "name='" + name + '\'' +
                 ", sets='" + sets + '\'' +
                 ", repetitions='" + repetitions + '\'' +
                 '}';
