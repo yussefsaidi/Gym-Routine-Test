@@ -1,58 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="100"
-    android:background="@color/lightRed"
-    android:gravity="center_vertical">
+    android:background="@color/mediumRed">
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@color/mediumRed"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:id="@+id/exercise_info"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mediumRed"/>
 
-    <TextView
-        android:padding="10dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/exercise_name"
-        android:text="Squat"
-        android:textSize="23sp"
-        android:textColor="#000"
-        android:layout_weight="60"
-        android:lines="1"/>
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="10"
-        />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/exercise_sets"
-        android:text="5"
-        android:textSize="23sp"
-        android:textColor="#000"
-        android:layout_weight="10"
-        />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/exercise_separator"
-        android:text="X"
-        android:textSize="18sp"
-        android:textColor="#000"
-        android:layout_weight="10"/>
+        <TextView
+            android:padding="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/exercise_name"
+            android:text="Squat"
+            android:textSize="23sp"
+            android:textColor="#000"
+            android:layout_weight="60"
+            android:lines="1"/>
 
-    <TextView
-        android:layout_width="0dp"
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="9" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/exercise_sets"
+            android:text="5"
+            android:textSize="23sp"
+            android:textColor="#000"
+            android:layout_weight="10"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/exercise_separator"
+            android:text="X"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_weight="10"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/exercise_reps"
+            android:text="5"
+            android:textSize="23sp"
+            android:textColor="#000"
+            android:layout_weight="10"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/exercise_reps"
-        android:text="5"
-        android:textSize="23sp"
-        android:textColor="#000"
-        android:layout_weight="10"/>
-</LinearLayout>
+        android:orientation="horizontal"
+        android:id="@+id/exercise_subinfo"
+        android:layout_below="@id/exercise_info"
+        android:weightSum="100"
+        android:gravity="center_vertical"
+        android:visibility="visible">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="60"
+            android:text="Category: "/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:text="EDIT"
+            android:lines="1"/>
+    </LinearLayout>
+</RelativeLayout>
