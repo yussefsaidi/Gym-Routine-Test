@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yussefsaidi.ppl.R;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 public class ExerciseRecyclerAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Exercise> mExercises;
-    private Exercise mExercise;
     private static final String TAG = "ExerciseRecyclerAdapter";
 
 
@@ -38,13 +38,12 @@ public class ExerciseRecyclerAdapter extends RecyclerView.Adapter {
         ((ExerciseViewHolder)holder).mEditName.setText(mExercises.get(position).getName());
         ((ExerciseViewHolder)holder).repetitions.setText(mExercises.get(position).getRepetitions());
         ((ExerciseViewHolder)holder).sets.setText(mExercises.get(position).getSets());
-        //((ExerciseViewHolder)holder).bind(mExercises.get(position));
-
     }
 
     @Override
     public int getItemCount() {
         return mExercises.size();
     }
+
 
 }

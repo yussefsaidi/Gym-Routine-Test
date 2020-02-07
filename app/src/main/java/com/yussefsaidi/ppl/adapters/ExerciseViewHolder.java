@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yussefsaidi.ppl.R;
@@ -49,21 +50,10 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
 
     }
 
-
-    public void bind(Exercise exercise) {
-        boolean expanded = exercise.isExpanded();
-
-        if (expanded) {
-            mSubItem.setVisibility(View.VISIBLE);
-        } else {
-            mSubItem.setVisibility(View.GONE);
-        }
-    }
-
     @Override
     public void onClick(View view) {
         activity = getActivity(view);
-        if(view.getId() == exerciseItem.getId()){
+        if(view.getId() == exerciseItem.getId() && mMode != EDIT_MODE_ENABLED){
             if(mSubItem.getVisibility() == View.VISIBLE){
                 mSubItem.setVisibility(View.GONE);
             } else
@@ -126,6 +116,4 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
             activity.onBackPressed();
         }
     }
-
-
 }
