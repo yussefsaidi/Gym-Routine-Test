@@ -41,7 +41,8 @@
             android:textColor="#000"
             android:layout_weight="60"
             android:lines="1"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:imeOptions="flagNoExtractUi"/>
 
         <View
             android:layout_width="0dp"
