@@ -2,26 +2,36 @@ package com.yussefsaidi.ppl.models;
 
 import android.view.View;
 
-public class Exercise {
-    private String name;
-    private String sets;
-    private String repetitions;
-    private boolean expanded;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "exercises")
+public class Exercise {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    @ColumnInfo(name = "name")
+    private String name;
+    @ColumnInfo(name = "sets")
+    private String sets;
+    @ColumnInfo(name = "repetitions")
+    private String repetitions;
+
+    @Ignore
     public Exercise() {
-        expanded = false;
     }
 
     public Exercise(String name, String sets, String repetitions) {
         this.name = name;
         this.sets = sets;
         this.repetitions = repetitions;
-        expanded = false;
     }
 
-    public boolean isExpanded() { return expanded; }
+    public int getId() { return id; }
 
-    public void setExpanded(boolean expanded) { this.expanded = expanded; }
+    public void setId(int id) { this.id = id; }
 
     public String getName() {
         return name;
@@ -50,7 +60,8 @@ public class Exercise {
     @Override
     public String toString() {
         return "Exercise{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", sets='" + sets + '\'' +
                 ", repetitions='" + repetitions + '\'' +
                 '}';
