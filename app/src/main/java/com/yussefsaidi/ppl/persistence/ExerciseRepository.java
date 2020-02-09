@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.yussefsaidi.ppl.adapters.ExerciseRecyclerAdapter;
+import com.yussefsaidi.ppl.async.InsertAsyncTask;
 import com.yussefsaidi.ppl.models.Exercise;
 
 import java.util.List;
@@ -18,7 +19,10 @@ public class ExerciseRepository {
     }
 
     public void insertExerciseTask(Exercise exercise){
-
+        exercise.setName("Exercise");
+        exercise.setRepetitions("5");
+        exercise.setSets("5");
+        new InsertAsyncTask(mExerciseDatabase.getExerciseDao()).execute(exercise);
     }
 
     public void updateExerciseTask(Exercise exercise){
