@@ -3,6 +3,7 @@ package com.yussefsaidi.ppl;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,9 +12,11 @@ import android.os.Bundle;
 
 import com.yussefsaidi.ppl.adapters.ExerciseRecyclerAdapter;
 import com.yussefsaidi.ppl.models.Exercise;
+import com.yussefsaidi.ppl.persistence.ExerciseRepository;
 import com.yussefsaidi.ppl.util.VerticalSpacingItemDecorator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExercisesListActivity extends AppCompatActivity {
 
@@ -29,6 +32,7 @@ public class ExercisesListActivity extends AppCompatActivity {
     // Vars
     private ArrayList<Exercise> mExercises = new ArrayList<>();
     private ExerciseRecyclerAdapter mExerciseRecyclerAdapter;
+    private ExerciseRepository mExerciseRepository;
 
 
 
@@ -38,10 +42,28 @@ public class ExercisesListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_exercise_list);
         mRecyclerView = findViewById(R.id.recyclerView);
+        mExerciseRepository = new ExerciseRepository(this);
+
         initRecyclerView();
-        insertFakeExercises();
+        //insertFakeExercises();
+        retrieveExercises();
         setSupportActionBar((Toolbar)findViewById(R.id.exercises_toolbar));
         setTitle("PPL");
+    }
+
+    private void retrieveExercises(){
+        mExerciseRepository.retrieveExercisesTask().observe(this, new Observer<List<Exercise>>() {
+            @Override
+            public void onChanged(List<Exercise> exercises) {
+                if(mExercises.size() > 0){
+                    mExercises.clear();
+                }
+                if(exercises != null){
+                    mExercises.addAll(exercises);
+                }
+                mExerciseRecyclerAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void insertFakeExercises(){
@@ -86,4 +108,5 @@ public class ExercisesListActivity extends AppCompatActivity {
         mExercises.remove(exercise);
         mExerciseRecyclerAdapter.notifyDataSetChanged();
     }
+
 }
