@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.yussefsaidi.ppl.adapters.ExerciseRecyclerAdapter;
 import com.yussefsaidi.ppl.models.Exercise;
 import com.yussefsaidi.ppl.persistence.ExerciseRepository;
@@ -18,7 +21,7 @@ import com.yussefsaidi.ppl.util.VerticalSpacingItemDecorator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExercisesListActivity extends AppCompatActivity {
+public class ExercisesListActivity extends AppCompatActivity implements FloatingActionButton.OnClickListener {
 
     private static final String TAG = "ExercisesListActivity";
 
@@ -27,15 +30,11 @@ public class ExercisesListActivity extends AppCompatActivity {
     // UI Components
     private RecyclerView mRecyclerView;
 
-
-
     // Vars
     private ArrayList<Exercise> mExercises = new ArrayList<>();
     private ExerciseRecyclerAdapter mExerciseRecyclerAdapter;
     private ExerciseRepository mExerciseRepository;
-
-
-
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +42,9 @@ public class ExercisesListActivity extends AppCompatActivity {
         setContentView(R.layout.layout_exercise_list);
         mRecyclerView = findViewById(R.id.recyclerView);
         mExerciseRepository = new ExerciseRepository(this);
+        findViewById(R.id.fab).setOnClickListener(this);
+
+        Log.d(TAG, "doInBackground: thread: " + Thread.currentThread().getName());
 
         initRecyclerView();
         //insertFakeExercises();
@@ -64,6 +66,14 @@ public class ExercisesListActivity extends AppCompatActivity {
                 mExerciseRecyclerAdapter.notifyDataSetChanged();
             }
         });
+    }
+
+    private void saveNewExercise(){
+
+    }
+
+    private void saveChanges(){
+
     }
 
     private void insertFakeExercises(){
@@ -109,4 +119,10 @@ public class ExercisesListActivity extends AppCompatActivity {
         mExerciseRecyclerAdapter.notifyDataSetChanged();
     }
 
+
+    @Override
+    public void onClick(View view) {
+        Log.d(TAG, "onClick: MAKE NEW EXERCISE HERE!");
+        mExerciseRepository.insertExerciseTask(new Exercise());
+    }
 }
