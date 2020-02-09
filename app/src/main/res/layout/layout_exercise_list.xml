@@ -26,6 +26,14 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 </androidx.recyclerview.widget.RecyclerView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fab"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_black_24dp"/>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
