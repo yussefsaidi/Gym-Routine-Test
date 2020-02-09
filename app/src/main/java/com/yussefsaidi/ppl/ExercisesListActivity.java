@@ -115,8 +115,9 @@ public class ExercisesListActivity extends AppCompatActivity implements Floating
     };
 
     private void deleteExercise(Exercise exercise){
-        mExercises.remove(exercise);
-        mExerciseRecyclerAdapter.notifyDataSetChanged();
+        mExerciseRepository.deleteExercise(exercise);
+        /**mExercises.remove(exercise);
+        mExerciseRecyclerAdapter.notifyDataSetChanged();**/
     }
 
 

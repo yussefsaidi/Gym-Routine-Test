@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.yussefsaidi.ppl.adapters.ExerciseRecyclerAdapter;
+import com.yussefsaidi.ppl.async.DeleteAsyncTask;
 import com.yussefsaidi.ppl.async.InsertAsyncTask;
 import com.yussefsaidi.ppl.models.Exercise;
 
@@ -34,7 +35,7 @@ public class ExerciseRepository {
     }
 
     public void deleteExercise(Exercise exercise){
-
+        new DeleteAsyncTask(mExerciseDatabase.getExerciseDao()).execute(exercise);
     }
 
 }
