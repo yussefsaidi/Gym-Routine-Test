@@ -30,4 +30,6 @@ public abstract class ExerciseDatabase extends RoomDatabase {
         return instance;
     }
 
+    public abstract ExerciseDao getExerciseDao();
+
 }
