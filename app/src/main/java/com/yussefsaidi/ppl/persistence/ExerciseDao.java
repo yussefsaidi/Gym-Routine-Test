@@ -15,7 +15,7 @@ import java.util.List;
 public interface ExerciseDao {
 
     @Insert
-    long insertExercises(Exercise... exercises);
+    long[] insertExercises(Exercise... exercises);
 
     @Query("SELECT * FROM exercises")
     LiveData<List<Exercise>> getExercises();
