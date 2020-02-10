@@ -3,6 +3,7 @@ package com.yussefsaidi.ppl.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -17,12 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.yussefsaidi.ppl.R;
 import com.yussefsaidi.ppl.models.Exercise;
+import com.yussefsaidi.ppl.persistence.ExerciseRepository;
 
 public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+    private static final String TAG = "ExerciseViewHolder";
     private static final int EDIT_MODE_DISABLED = 0;
     private static final int EDIT_MODE_ENABLED = 1;
 
+    ExerciseRepository mExerciseRepository;
+    Exercise mExercise;
     TextView sets, repetitions;
     private LinearLayout mSubItem;
     private Button mEditButton;
@@ -36,6 +41,8 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
 
     public ExerciseViewHolder(@NonNull View itemView) {
         super(itemView);
+
+
         mViewName = itemView.findViewById(R.id.exercise_text_name);
         mEditName = itemView.findViewById(R.id.exercise_edit_name);
         sets = itemView.findViewById(R.id.exercise_reps);
@@ -52,6 +59,7 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
 
     @Override
     public void onClick(View view) {
+
         activity = getActivity(view);
         if(view.getId() == exerciseItem.getId() && mMode != EDIT_MODE_ENABLED){
             if(mSubItem.getVisibility() == View.VISIBLE){
@@ -66,6 +74,7 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
         // Check pressed in edit mode
         if (view.getId() == mCheckContainer.getId()) {
             disableEditMode(activity);
+            saveChanges(activity);
         }
         // When edit mode is enabled, clicking anywhere results in disabling edit mode
 
@@ -88,6 +97,8 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
         mCheckContainer.setVisibility(View.GONE);
         mEditButton.setVisibility(View.VISIBLE);
         hideKeyboard(activity);
+
+
     }
 
     public static void hideKeyboard(Activity activity) {
@@ -115,5 +126,14 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
         else {
             activity.onBackPressed();
         }
+    }
+
+    private void saveChanges(Activity activity){
+        mExerciseRepository = new ExerciseRepository(activity);
+        mExercise.setName(mEditName.getText().toString());
+        mExercise.setSets(sets.getText().toString());
+        mExercise.setRepetitions(repetitions.getText().toString());
+        mExerciseRepository.updateExerciseTask(mExercise);
+        Log.d(TAG, "saveChanges: UPDATE ITEM");
     }
 }
