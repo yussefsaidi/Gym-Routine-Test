@@ -8,7 +8,7 @@ import com.yussefsaidi.ppl.persistence.ExerciseRepository;
 
 public class DeleteAsyncTask extends AsyncTask<Exercise, Void, Void> {
 
-    ExerciseDao mDao;
+    private ExerciseDao mDao;
 
     public DeleteAsyncTask(ExerciseDao dao) {
         this.mDao = dao;
