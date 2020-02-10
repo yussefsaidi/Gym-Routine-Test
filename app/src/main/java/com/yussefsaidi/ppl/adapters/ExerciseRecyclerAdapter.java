@@ -38,6 +38,8 @@ public class ExerciseRecyclerAdapter extends RecyclerView.Adapter {
         ((ExerciseViewHolder)holder).mEditName.setText(mExercises.get(position).getName());
         ((ExerciseViewHolder)holder).repetitions.setText(mExercises.get(position).getRepetitions());
         ((ExerciseViewHolder)holder).sets.setText(mExercises.get(position).getSets());
+        // Send exercise item reference to viewholder to update it
+        ((ExerciseViewHolder)holder).mExercise = mExercises.get(position);
     }
 
     @Override
