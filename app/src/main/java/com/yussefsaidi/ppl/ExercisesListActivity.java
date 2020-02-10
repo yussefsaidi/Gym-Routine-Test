@@ -47,7 +47,6 @@ public class ExercisesListActivity extends AppCompatActivity implements Floating
         Log.d(TAG, "doInBackground: thread: " + Thread.currentThread().getName());
 
         initRecyclerView();
-        //insertFakeExercises();
         retrieveExercises();
         setSupportActionBar((Toolbar)findViewById(R.id.exercises_toolbar));
         setTitle("PPL");
@@ -66,25 +65,6 @@ public class ExercisesListActivity extends AppCompatActivity implements Floating
                 mExerciseRecyclerAdapter.notifyDataSetChanged();
             }
         });
-    }
-
-    private void saveNewExercise(){
-
-    }
-
-    private void saveChanges(){
-
-    }
-
-    private void insertFakeExercises(){
-        for(int i = 0; i < 100; i++){
-            Exercise exercise = new Exercise();
-            exercise.setName("Exercise # " + i);
-            exercise.setSets("5");
-            exercise.setRepetitions("5");
-            mExercises.add(exercise);
-        }
-        mExerciseRecyclerAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView(){
@@ -116,8 +96,6 @@ public class ExercisesListActivity extends AppCompatActivity implements Floating
 
     private void deleteExercise(Exercise exercise){
         mExerciseRepository.deleteExercise(exercise);
-        /**mExercises.remove(exercise);
-        mExerciseRecyclerAdapter.notifyDataSetChanged();**/
     }
 
 
