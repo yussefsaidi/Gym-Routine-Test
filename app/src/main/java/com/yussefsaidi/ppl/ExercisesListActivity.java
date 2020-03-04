@@ -49,7 +49,7 @@ public class ExercisesListActivity extends AppCompatActivity implements Floating
         initRecyclerView();
         retrieveExercises();
         setSupportActionBar((Toolbar)findViewById(R.id.exercises_toolbar));
-        setTitle("PPL");
+        setTitle("Gym Routine");
     }
 
     private void retrieveExercises(){

@@ -56,6 +56,15 @@
             android:textSize="23sp"
             android:textColor="#000"
             android:layout_weight="10"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/exercise_edit_sets"
+            android:text="5"
+            android:textSize="23sp"
+            android:textColor="#000"
+            android:layout_weight="10"
+            android:visibility="gone"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -73,6 +82,15 @@
             android:textSize="23sp"
             android:textColor="#000"
             android:layout_weight="10"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/exercise_edit_reps"
+            android:text="5"
+            android:textSize="23sp"
+            android:textColor="#000"
+            android:layout_weight="10"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <LinearLayout

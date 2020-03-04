@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yussefsaidi.ppl.R;
@@ -26,14 +25,17 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
     private static final int EDIT_MODE_DISABLED = 0;
     private static final int EDIT_MODE_ENABLED = 1;
 
+
+    TextView mViewName, mViewSets, mViewReps;
+    EditText mEditName, mEditSets, mEditReps;
+
     ExerciseRepository mExerciseRepository;
     Exercise mExercise;
-    TextView sets, repetitions;
     private LinearLayout mSubItem;
     private Button mEditButton;
     private ImageButton mCheckContainer;
-    EditText mEditName;
-    TextView mViewName;
+
+
     View exerciseItem;
     private int mMode;
     Activity activity;
@@ -42,11 +44,16 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
     public ExerciseViewHolder(@NonNull View itemView) {
         super(itemView);
 
-
+        // For editing
         mViewName = itemView.findViewById(R.id.exercise_text_name);
-        mEditName = itemView.findViewById(R.id.exercise_edit_name);
-        sets = itemView.findViewById(R.id.exercise_reps);
-        repetitions = itemView.findViewById(R.id.exercise_sets);
+        mEditName = itemView.findViewById(R.id.exercise_edit_name); // GONE by default
+        mViewSets = itemView.findViewById(R.id.exercise_sets);
+        mEditSets = itemView.findViewById(R.id.exercise_edit_sets); // GONE by default
+        mViewReps = itemView.findViewById(R.id.exercise_reps);
+        mEditReps = itemView.findViewById(R.id.exercise_edit_reps); // GONE by default
+
+
+
         mSubItem = itemView.findViewById(R.id.exercise_subinfo);
         mEditButton = itemView.findViewById(R.id.edit_name_button);
         mCheckContainer = itemView.findViewById(R.id.check_container);
@@ -82,23 +89,35 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
 
 
     private void enableEditMode(Activity activity) {
-        mViewName.setVisibility(View.GONE);
-        mEditName.setVisibility(View.VISIBLE);
+        //Make all 3 edit texts visible
         mMode = EDIT_MODE_ENABLED;
+        mViewName.setVisibility(View.GONE);
+        mViewReps.setVisibility(View.GONE);
+        mViewSets.setVisibility(View.GONE);
+        mEditName.setVisibility(View.VISIBLE);
+        mEditSets.setVisibility(View.VISIBLE);
+        mEditReps.setVisibility(View.VISIBLE);
+
+
         mCheckContainer.setVisibility(View.VISIBLE);
         mEditButton.setVisibility(View.GONE);
         mEditName.requestFocus();
     }
 
     private void disableEditMode(Activity activity) {
-        mEditName.setVisibility(View.GONE);
-        mViewName.setVisibility(View.VISIBLE);
         mMode = EDIT_MODE_DISABLED;
+
+        mEditName.setVisibility(View.GONE);
+        mEditSets.setVisibility(View.GONE);
+        mEditReps.setVisibility(View.GONE);
         mCheckContainer.setVisibility(View.GONE);
+
+        mViewName.setVisibility(View.VISIBLE);
+        mViewSets.setVisibility(View.VISIBLE);
+        mViewReps.setVisibility(View.VISIBLE);
         mEditButton.setVisibility(View.VISIBLE);
+
         hideKeyboard(activity);
-
-
     }
 
     public static void hideKeyboard(Activity activity) {
@@ -131,8 +150,8 @@ public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.
     private void saveChanges(Activity activity){
         mExerciseRepository = new ExerciseRepository(activity);
         mExercise.setName(mEditName.getText().toString());
-        mExercise.setSets(sets.getText().toString());
-        mExercise.setRepetitions(repetitions.getText().toString());
+        mExercise.setSets(mEditSets.getText().toString());
+        mExercise.setRepetitions(mEditReps.getText().toString());
         mExerciseRepository.updateExerciseTask(mExercise);
         Log.d(TAG, "saveChanges: UPDATE ITEM");
     }
